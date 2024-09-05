@@ -1,6 +1,8 @@
 package main
 
 import "net/http"
+import "fmt"
+import "os"
 
 func main(){
 	http.HandleFunc("/", hello)
@@ -8,5 +10,7 @@ func main(){
 }
 
 func hello(w http.ResponseWriter, r *http.Request){
-	w.Write([]byte("Hello from Go, World!"))
+	name := os.Getenv("NAME")
+	version := os.Getenv("VERSION")
+	fmt.Fprintf(w, "Hello %s! The current version is %s!", name, version)
 }
