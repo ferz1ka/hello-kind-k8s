@@ -16,9 +16,19 @@ spec:
     spec:
       containers:
         - name: go-server
-          image: ferz1ka/hello-go-multi:v2
-          env:
-            - name: NAME
-              value: "Ferz1ka"
-            - name: VERSION
-              value: "v2"
+          image: ferz1ka/hello-go-multi:v4
+          envFrom:
+            - configMapRef:
+                name: go-server-configmap-1
+            - secretRef:
+                name: go-server-secret
+          volumeMounts:
+            - mountPath: "/app/message"
+              name: configmap-volume
+      volumes:
+        - name: configmap-volume
+          configMap:
+            name: go-server-configmap-2
+            items:
+              - key: message
+                path: "message.txt"
