@@ -16,7 +16,17 @@ spec:
     spec:
       containers:
         - name: go-server
-          image: ferz1ka/hello-go-multi:v4
+          image: ferz1ka/hello-go-multi:v5
+
+          livenessProbe:
+            httpGet:
+              path: /liveness
+              port: 80 # container port!
+            periodSeconds: 5
+            failureThreshold: 1
+            successThreshold: 1
+            timeoutSeconds: 1 # time in seconds to wait for request before consider a failure
+
           envFrom:
             - configMapRef:
                 name: go-server-configmap-1
