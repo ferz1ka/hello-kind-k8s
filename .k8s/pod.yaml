@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "go-server"
+  labels:
+    app: "go-server"
+spec:
+  containers:
+    - name: "go-server"
+      image: "ferz1ka/hello-go-multi:latest"
