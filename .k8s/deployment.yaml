@@ -1,5 +1,5 @@
 apiVersion: apps/v1
-kind: ReplicaSet
+kind: Deployment
 metadata:
   name: go-server
   labels:
@@ -8,7 +8,7 @@ spec:
   selector:
     matchLabels:
       app: go-server
-  replicas: 2
+  replicas: 1
   template:
     metadata:
       labels:
@@ -16,4 +16,9 @@ spec:
     spec:
       containers:
         - name: go-server
-          image: ferz1ka/hello-go-multi:latest
+          image: ferz1ka/hello-go-multi:v2
+          env:
+            - name: NAME
+              value: "Ferz1ka"
+            - name: VERSION
+              value: "v2"

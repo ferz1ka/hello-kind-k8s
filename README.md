@@ -39,4 +39,4 @@ Kubernetes objects are created in the following order: Deployments > Replicasets
 
 Apply the k8s service spec with `kubectl apply -f .k8s/service.yaml`. To access the service, use `kubectl port-forward service/go-server-service 9000:8000` and access it at `http://localhost:8080`.
 
-Note: Inside the `.k8s/service.yaml` spec file, the port is the service port and targetPort is the container port. So in this example, 9000 is the host port, 8000 is the service port and 80 is the container port.
+Note: Inside the `.k8s/service.yaml` spec file, the port is the service port and targetPort is the container port. So in this example, 9000 is the host port, 8000 is the service port and 80 is the container port. We also have more types of services, such as `LoadBalancer` (applies a external port to the service, used with cloud providers) and `NodePort` (applies same port to all nodes redirecting to the service).
